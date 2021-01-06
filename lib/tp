@@ -1,0 +1,109 @@
+Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            title: Text("Dashboard"),
+          ),
+          drawer: MainDrawer(),
+          body: Container(
+            // color: Colors.amber[100],
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.network(
+                          'https://image.freepik.com/free-icon/important-person_318-10744.jpg',
+                          width: 150,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Divider(
+                  thickness: 2,
+                  indent: 30,
+                  endIndent: 30,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Member Details",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    _buildTextBox("Name   : ", "Akash Kulkarni"),
+                    _buildTextBox("Dept   : ", "IT"),
+                    _buildTextBox("Class  : ", "SE-10"),
+                    Divider(
+                      thickness: 2,
+                      indent: 30,
+                      endIndent: 30,
+                    ),
+                    Text(
+                      "Contact Details",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.contact_phone),
+                      title: Text("77570 61115"),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.contact_mail),
+                      title: Text("akash213kulkarni@gmail.com"),
+                      onTap: () {},
+                    ),
+                    Divider(
+                      thickness: 2,
+                      indent: 30,
+                      endIndent: 30,
+                    ),
+                    Text(
+                      "Team Details",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    _buildTextBox("Team Name  : ", "App Development"),
+                    _buildTextBox("Position   :", "Team Member"),
+                  ],
+                )
+              ],
+            ),
+          )),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            text1,
+            textAlign: TextAlign.start,
+            style: TextStyle(fontSize: 18),
+          ),
+          Text(
+            text2,
+            textAlign: TextAlign.start,
+            style: TextStyle(fontSize: 22),
+          ),
+        ],
+      ),
+    );
+  }
