@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import '../screens/dashboard_screen.dart';
-
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import '../screens/auth/login_page.dart';
 
 class Splash extends StatefulWidget {
   static const routeName = '/splash';
@@ -12,34 +10,62 @@ class Splash extends StatefulWidget {
   _SplashState createState() => _SplashState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashState extends State<Splash> with TickerProviderStateMixin {
+  AnimationController animation;
+  Animation<double> _fadeInFadeOut;
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacementNamed(DashboardScreen.routeName);
+    animation = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+    _fadeInFadeOut = Tween<double>(begin: 0.2, end: 1).animate(animation);
+    Timer(
+        Duration(seconds: 4),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => LoginScreen())));
+
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        animation.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        animation.forward();
+      }
     });
+    animation.forward();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black54,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            "PCSB",
-            style: TextStyle(fontSize: 75, color: Colors.blue[900]),
+      body: Container(
+        color: Colors.black,
+        child: Center(
+          child: FadeTransition(
+            opacity: _fadeInFadeOut,
+            child: new Image.asset('assets/images/PCSBlogo.jpg'),
           ),
-          Image.network(''),
-          Center(
-            child: SpinKitWave(
-              color: Theme.of(context).accentColor,
-              size: 50.0,
-            ),
-          ),
-        ],
+        ),
+      ),
+    );
+  }
+}
+
+class AfterSplash extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        backgroundColor: Colors.black,
+        title: new Text("Welcome In SplashScreen Package"),
+        automaticallyImplyLeading: false,
+      ),
+      body: new Center(
+        child: new Text(
+          "Succeeded!",
+          style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+        ),
       ),
     );
   }

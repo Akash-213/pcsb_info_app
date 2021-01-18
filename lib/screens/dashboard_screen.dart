@@ -16,11 +16,6 @@ class DashboardScreen extends StatelessWidget {
         drawer: MainDrawer(),
         body: Column(
           children: [
-            Text(
-              "Welcome Akash !!",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30),
-            ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: ClipRRect(
